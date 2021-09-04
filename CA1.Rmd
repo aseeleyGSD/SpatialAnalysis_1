@@ -4,6 +4,9 @@ author: "Alicia Seeley"
 date: "9/4/2021"
 output: html_document
 ---
+```{r}
+
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -26,5 +29,72 @@ You can also embed plots, for example:
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
+```{r}
+library(sf)
+library(tidyverse)
+library(ggspatial)
+library(ggthemes)
+```
+
+```{r}
+pops <- st_read("pops.geojson")
+cafes <- st_read("cafes.geojson")
+```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+cafe_plot <- ggplot(cafes) +
+  geom_sf()
+
+cafe_plot
+```
+```{r}
+ggplot(cafes) +
+  geom_sf(shape = 8, color = "red", size = 0.5, alpha = 0.1)
+```
+```{r}
+ ggplot(cafes) +
+  geom_sf(color = "blue") +
+  geom_sf(data = pops)
+```
+```{r}
+ggplot() +
+  geom_sf(data = pops, color = "red", 
+                           size = 3,
+                           fill = "blue")
+```
+```{r}
+ggplot(cafes) +
+  annotation_map_tile(zoomin = 0, progress = "none") +
+  geom_sf(data = pops) +
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+
+```{r}
+centers <- st_read("health-centers.geojson")
+cafes <- st_read("cafes.geojson")
+pops <- st_read("pops.geojson")
+```
+```{r}
+ggplot(cafes) +
+  geom_sf(color = "blue") +
+  geom_sf(data = centers, color = "green", fill = "yellow", alpha = 0.3)
+```
+```{r}
+ggplot(cafes) +
+  annotation_map_tile(zoomin = 0, progress = "none") +
+  geom_sf(data = centers, color = "green", fill = "yellow", alpha = 0.3) +
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+```{r}
+ggplot() +
+  geom_sf(data = centers, color = NA, alpha = 0.5,
+          aes(fill = "Health Center Areas")) +
+  geom_sf(data = cafes,
+          aes(color = "Sidewalk Cafes")) +
+  geom_sf(data = pops, 
+          aes(color = "Privately Owned Public Space")) +
+  scale_fill_manual(values = "blue", name = "") +
+  scale_color_manual(values = c("green", "black"), name = "")
+```
+
