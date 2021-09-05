@@ -49,8 +49,8 @@ ggplot(NTA) +
 ```{r}
 ggplot(NTA) +
   annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
-  geom_sf(size = 0.3, color = "red", fill = "pink", alpha = 0.1) +
-  geom_sf(data = pops, color = "blue", size = 0.3)
+  geom_sf(size = 0.1, color = "red", fill = "pink", alpha = 0.1) +
+  geom_sf(data = pops, color = "green", size = 0.3)
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
 
