@@ -122,4 +122,37 @@ ggplot(centers) +
   geom_sf(data = pops, color = "yellow", alpha = 0.4)
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
+```{r}
+nhoods <- st_read("https://bostonopendata-boston.opendata.arcgis.com/datasets/3525b0ee6e6b427f9aab5d0a1d0a1a28_0.kml?outSR=%7B%22latestWkid%22%3A2249%2C%22wkid%22%3A102686%7D", quiet = TRUE)
+
+nhoods_plot <- ggplot(nhoods) +
+  geom_sf()
+
+nhoods_plot
+```
+```{r}
+NTA <- st_read("https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/services/NYC_Neighborhood_Tabulation_Areas_2020/FeatureServer/0/query?where=1=1&outFields=*&outSR=4326&f=pgeojson", quiet = TRUE)
+
+NTA_plot <- ggplot(NTA) +
+geom_sf()
+
+NTA_plot
+
+```
+```{r}
+ggplot(NTA) +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "hotstyle")  +
+  geom_sf(size = 0.5, color = "yellow", fill = "green", alpha = 0.3, aes(fill = "NTA's")) +
+  geom_sf(data = pops, color = "blue", size = 0.3, aes(color = "Privately Owned Public Space"))
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+```{r}
+ggplot(NTA) +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(size = 0.5, color = "red", fill = "pink", alpha = 0.3, aes(fill = "NTA's")) +
+  geom_sf(data = pops, size = 0.3, aes(color = "Privately Owned Public Space"))
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+
+```
 
