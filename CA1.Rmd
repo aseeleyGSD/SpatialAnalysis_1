@@ -114,3 +114,12 @@ ggplot(centers) +
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
 
+```{r}
+ggplot(centers) +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "hotstyle")  +
+  geom_sf(size = 1, color = "red", fill = NA) +
+  geom_sf(data = cafes, size = 0.05) +
+  geom_sf(data = pops, color = "yellow", alpha = 0.4)
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+
