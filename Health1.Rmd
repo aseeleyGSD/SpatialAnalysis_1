@@ -29,6 +29,51 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 ```{r}
+centers <- st_read("health-centers.geojson")
+bikes <- st_read("bike-stations.json")
+housing <-st_read("housing-areas.geojson")
+cafes <- st_read("cafes.geojson")
+pops <- st_read("pops.geojson")
+```
+```{r}
+centers_plot <- ggplot(centers) +
+  geom_sf()
 
+centers_plot
+```
+```{r}
+ggplot(bikes) +
+  geom_sf(shape = 11, color = "blue", size = 0.5, alpha = 0.1)
+```
+```{r}
+ggplot(cafes) +
+  geom_sf(color = "blue") +
+  geom_sf(data = centers, color = "green", fill = "yellow", alpha = 0.3)
+```
+```{r}
+ggplot(cafes) +
+  annotation_map_tile(zoomin = 0, progress = "none") +
+  geom_sf(data = centers, color = "green", fill = "yellow", alpha = 0.3) +
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+```{r}
+ggplot() +
+  geom_sf(data = centers, color = NA, alpha = 0.5,
+          aes(fill = "Health Center Boundaries")) +
+  geom_sf(data = cafes) +
+  geom_sf(data = pops, color = "green") +
+  scale_fill_manual(values = "blue", name = "")
+```
+
+```{r}
+ggplot() +
+  geom_sf(data = centers, color = NA, alpha = 0.5,
+          aes(fill = "Health Center Areas")) +
+  geom_sf(data = cafes,
+          aes(color = "Sidewalk Cafes")) +
+  geom_sf(data = pops, 
+          aes(color = "Privately Owned Public Space")) +
+  scale_fill_manual(values = "blue", name = "") +
+  scale_color_manual(values = c("green", "black"), name = "")
 ```
 

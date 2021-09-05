@@ -97,4 +97,20 @@ ggplot() +
   scale_fill_manual(values = "blue", name = "") +
   scale_color_manual(values = c("green", "black"), name = "")
 ```
+```{r}
+ggplot(pops) +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "osmgrayscale")  +
+  geom_sf(color = "yellow") +
+  geom_sf(data = centers, color = "blue", fill = "lightblue", alpha = 0.4) +
+  geom_sf(data = cafes, size = 0.1, alpha = 0.3)
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
+```{r}
+ggplot(centers) +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "osmgrayscale")  +
+  geom_sf(color = "blue", fill = "lightblue") +
+  geom_sf(data = cafes, size = 0.05) +
+  geom_sf(data = pops, color = "yellow", alpha = 0.4)
+  labs(caption = "Map tiles and data by OpenStreetMap")
+```
 
