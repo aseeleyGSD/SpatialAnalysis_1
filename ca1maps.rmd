@@ -33,6 +33,8 @@ library(sf)
 library(tidyverse)
 library(ggspatial)
 library(ggthemes)
+library(viridis)
+library(viridisLite)
 ```
 
 ```{r}
@@ -52,5 +54,33 @@ ggplot(NTA) +
   geom_sf(size = 0.1, color = "red", fill = "pink", alpha = 0.1) +
   geom_sf(data = pops, color = "green", size = 0.3)
   labs(caption = "Map tiles and data by OpenStreetMap")
+```
+```{r}
+ggplot(NTA) + 
+  geom_sf(aes(fill=BoroCode))
+```
+
+```{r}
+ggplot(NTA) + 
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroCode)) +
+  scale_fill_viridis() + theme_bw() +
+  geom_sf(data = pops, color = "red", size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroCode)) +
+  scale_fill_viridis() + theme_bw() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+  
+```
+```{r}
+ggplot(NTA) + 
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroCode)) +
+  geom_label(aes(label = BoroName)) +
+  scale_fill_viridis() + theme_bw() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
 ```
 
