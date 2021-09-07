@@ -69,18 +69,14 @@ ggplot(NTA) +
 ```
 ```{r}
 ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
   annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
-  geom_sf(aes(fill = BoroCode)) +
-  scale_fill_viridis() + theme_bw() +
+  geom_sf(aes(fill = BoroName)) +
+  scale_fill_discrete() + theme_bw() +
   geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
   
 ```
 ```{r}
-ggplot(NTA) + 
-  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
-  geom_sf(aes(fill = BoroCode)) +
-  geom_label(aes(label = BoroName)) +
-  scale_fill_viridis() + theme_bw() +
-  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+
 ```
 
