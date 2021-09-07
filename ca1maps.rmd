@@ -77,6 +77,51 @@ ggplot(NTA) +
   
 ```
 ```{r}
-
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroName)) +
+  scale_fill_discrete() + theme_economist() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroName), alpha = 0.2) +
+  scale_fill_discrete() + theme_clean() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroName), alpha = 0.2) +
+  scale_fill_discrete() + theme_dark() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf(aes(fill = BoroName), alpha = 0.2) +
+  scale_fill_discrete() + theme_calc() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "hotstyle")  +
+  geom_sf(aes(fill = BoroName), alpha = 0.2) +
+  scale_fill_discrete() + theme_classic() +
+  geom_sf(data = pops, aes(color = "Public Spaces"), size = 0.3)
+```
+```{r}
+ggplot(NTA) + 
+  ggtitle("NYC Neighborhoods and Public Spaces") +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight")  +
+  geom_sf(aes(fill = BoroName), color = "white", alpha = 0.2) +
+  scale_fill_discrete() + theme_clean() +
+  geom_sf(data = pops, aes(color = "Privately Owned Public Spaces"), size = 1)
 ```
 
