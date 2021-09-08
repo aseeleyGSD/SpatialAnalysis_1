@@ -43,9 +43,9 @@ NTA <- st_read("https://services5.arcgis.com/GfwWNkhOj9bNBqoJ/arcgis/rest/servic
 ```
 ```{r}
 ggplot(NTA) +
-  annotation_map_tile(zoomin = 0, progress = "none", type = "hotstyle")  +
-  geom_sf(size = 1, color = "green", fill = "yellow", alpha = 0.3) +
-  geom_sf(data = pops, color = "blue", size = 0.1)
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenwatercolor")  +
+  geom_sf(size = 1, color = "green", fill = "green") +
+  geom_sf(data = pops, color = "blue", size = 2)
   labs(caption = "Map tiles and data by OpenStreetMap")
 ```
 ```{r}
